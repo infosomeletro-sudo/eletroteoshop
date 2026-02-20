@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>lojaeletroteo — Dispositivos e Periféricos de Informática</title>
+  <meta name="description" content="lojaeletroteo: periféricos e dispositivos de informática. Teclados, mouses, headsets, SSD, memória, cabos e muito mais." />
+
+  <style>
+    :root{
+      --bg:#070b14;
+      --card:#0b1220;
+      --card2:#0f1730;
+      --txt:#e8eefc;
+      --muted:#a8b3d6;
+      --line:rgba(255,255,255,.08);
+      --brand:#5b8cff;
+      --brand2:#7c5cff;
+      --ok:#37d67a;
+      --warn:#ffcc66;
+      --danger:#ff6b6b;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --r:18px;
+      --r2:24px;
+      --max:1120px;
+      --focus: 0 0 0 3px rgba(91,140,255,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      background:
+        radial-gradient(1100px 700px at 80% -10%, rgba(124,92,255,.25), transparent 55%),
+        radial-gradient(900px 600px at 10% 10%, rgba(91,140,255,.22), transparent 55%),
+        radial-gradient(900px 600px at 50% 120%, rgba(55,214,122,.10), transparent 60%),
+        var(--bg);
+      color:var(--txt);
+      line-height:1.4;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 16px}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:linear-gradient(to bottom, rgba(7,11,20,.92), rgba(7,11,20,.65));
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .row{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; min-width: 210px;}
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background:linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 10px 30px rgba(91,140,255,.25);
+      display:grid; place-items:center;
+      position:relative;
+    }
+    .logo:after{
+      content:""; position:absolute; inset:1px; border-radius:11px;
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .brand .name{display:flex; flex-direction:column; line-height:1.1}
+    .brand .name strong{font-size:14px; letter-spacing:.2px}
+    .brand .name span{font-size:12px; color:var(--muted)}
+    .nav{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
+    .nav a{
+      font-size:13px; color:var(--muted);
+      padding:8px 10px; border-radius:999px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{color:var(--txt); border-color:var(--line); background:rgba(255,255,255,.03)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--txt);
+      cursor:pointer;
+      transition:.15s transform ease, .15s background ease, .15s border ease;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.06)}
+    .btn:active{transform: translateY(0)}
+    .btn.primary{
+      border-color: rgba(91,140,255,.35);
+      background: linear-gradient(135deg, rgba(91,140,255,.22), rgba(124,92,255,.18));
+    }
+    .btn.primary:hover{border-color: rgba(91,140,255,.55)}
+    .btn.danger{border-color: rgba(255,107,107,.25)}
+    .btn.danger:hover{border-color: rgba(255,107,107,.40)}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .hero{padding:34px 0 10px}
+    .hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:stretch;}
+    .hero-card{
+      border:1px solid var(--line);
+      border-radius: var(--r2);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding:22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card:before{
+      content:""; position:absolute; inset:-80px -80px auto auto;
+      width:260px; height:260px;
+      background: radial-gradient(circle at 30% 30%, rgba(91,140,255,.35), transparent 55%);
+    }
+    .hero h1{margin:0 0 10px; font-size: clamp(26px, 4vw, 40px); letter-spacing:-.4px; line-height:1.08;}
+    .hero p{margin:0 0 14px; color:var(--muted); max-width:60ch}
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .searchbar{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:14px;}
+    .input{
+      flex: 1 1 260px;
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .input input, .input select{
+      width:100%;
+      background:transparent;
+      border:0; outline:0;
+      color:var(--txt);
+      font-size:14px;
+    }
+    select{appearance:none}
+    .input:focus-within{box-shadow:var(--focus); border-color: rgba(91,140,255,.45)}
+    .hero-aside{display:grid; gap:14px;}
+    .mini{
+      border:1px solid var(--line);
+      border-radius: var(--r2);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      padding:16px;
+    }
+    .mini h3{margin:0 0 8px; font-size:14px}
+    .mini p{margin:0; font-size:13px; color:var(--muted)}
+    .mini ul{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:8px}
+    .mini li{display:flex; gap:10px; align-items:flex-start; color:var(--muted); font-size:13px}
+    .dot{width:10px;height:10px;border-radius:999px;margin-top:4px; background:rgba(255,255,255,.12); border:1px solid var(--line)}
+    .dot.ok{background:rgba(55,214,122,.35); border-color:rgba(55,214,122,.45)}
+    .dot.brand{background:rgba(91,140,255,.35); border-color:rgba(91,140,255,.45)}
+    .dot.warn{background:rgba(255,204,102,.30); border-color:rgba(255,204,102,.45)}
+    .section{padding:18px 0}
+    .section-head{
+      display:flex; justify-content:space-between; gap:12px; align-items:flex-end; flex-wrap:wrap;
+      margin: 10px 0 12px;
+    }
+    .section-head h2{margin:0; font-size:18px; letter-spacing:.2px}
+    .section-head p{margin:0; color:var(--muted); font-size:13px}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px;}
+    .card{
+      grid-column: span 4;
+      border:1px solid var(--line);
+      border-radius: var(--r2);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      overflow:hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.30);
+      display:flex; flex-direction:column;
+      min-height: 300px;
+    }
+    .thumb{
+      height: 150px;
+      background: radial-gradient(circle at 30% 20%, rgba(91,140,255,.20), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(124,92,255,.18), transparent 60%),
+                  linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-bottom:1px solid var(--line);
+      display:grid; place-items:center;
+      position:relative;
+      text-align:center;
+      padding:10px;
+    }
+    .badge{
+      position:absolute; top:12px; left:12px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(7,11,20,.7);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      backdrop-filter: blur(8px);
+    }
+    .badge.hot{color:#ffd37a; border-color: rgba(255,211,122,.25)}
+    .badge.new{color:#a8ffcc; border-color: rgba(55,214,122,.25)}
+    .badge.off{color:#ffb3b3; border-color: rgba(255,107,107,.22)}
+    .card .content{padding:14px; display:flex; flex-direction:column; gap:10px; flex:1}
+    .title{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+    .title h3{margin:0; font-size:14px}
+    .title small{color:var(--muted); font-size:12px}
+    .price{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      margin-top:auto;
+      padding-top:10px;
+      border-top:1px dashed rgba(255,255,255,.10);
+    }
+    .price strong{font-size:16px}
+    .price s{color:rgba(232,238,252,.5); font-size:12px}
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:5px 9px; border-radius:999px;
+    }
+    .footer{
+      border-top:1px solid var(--line);
+      margin-top:16px;
+      padding:18px 0 30px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .cols{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px}
+    details{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      padding:10px 12px;
+    }
+    summary{cursor:pointer; color:var(--txt); font-weight:600; font-size:13px}
+    details p{margin:8px 0 0; color:var(--muted); font-size:13px}
+
+    /* Drawer carrinho */
+    .drawer{position:fixed; inset:0; background: rgba(0,0,0,.55); display:none; z-index:100;}
+    .drawer.open{display:block}
+    .panel{
+      position:absolute; top:0; right:0; height:100%; width:min(460px, 94vw);
+      background: linear-gradient(180deg, rgba(15,23,48,.96), rgba(11,18,32,.96));
+      border-left:1px solid var(--line);
+      box-shadow: -20px 0 60px rgba(0,0,0,.5);
+      padding:14px;
+      display:flex; flex-direction:column;
+      gap:12px;
+    }
+    .panel .head{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .panel h3{margin:0; font-size:15px}
+    .cart-list{display:grid; gap:10px; overflow:auto; padding-right:6px}
+    .cart-item{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      padding:10px;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:10px;
+      align-items:center;
+    }
+    .cart-item .meta{display:grid; gap:2px}
+    .cart-item .meta strong{font-size:13px}
+    .cart-item .meta small{color:var(--muted); font-size:12px}
+    .qty{
+      display:flex; align-items:center; gap:8px;
+      border:1px solid var(--line);
+      border-radius: 999px;
+      padding:6px 8px;
+      background: rgba(255,255,255,.02);
+    }
+    .qty button{
+      all:unset; cursor:pointer;
+      width:22px;height:22px;border-radius:999px;
+      display:grid; place-items:center;
+      border:1px solid transparent;
+    }
+    .qty button:hover{border-color:var(--line); background: rgba(255,255,255,.03)}
+    .totals{
+      border-top:1px solid var(--line);
+      padding-top:12px;
+      display:grid; gap:8px;
+    }
+    .row2{display:flex; justify-content:space-between; gap:10px; align-items:center; font-size:13px}
+    .row2 strong{font-size:15px}
+
+    /* Modal */
+    .modal{position:fixed; inset:0; display:none; z-index:120; background: rgba(0,0,0,.6);}
+    .modal.open{display:block}
+    .modal .box{
+      position:absolute; left:50%; top:50%;
+      transform: translate(-50%,-50%);
+      width:min(920px, 94vw);
+      max-height: 86vh;
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(15,23,48,.98), rgba(11,18,32,.98));
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    .modal .box h3{margin:0 0 8px; font-size:16px}
+    .modal .box p, .modal .box li{color:var(--muted); font-size:13px}
+    .modal .top{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      position:sticky; top:0;
+      background: rgba(11,18,32,.92);
+      border-bottom: 1px solid var(--line);
+      padding:10px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+    }
+    .modal .content{padding:10px 6px}
+    .modal .content h4{margin:14px 0 6px; font-size:14px}
+    .modal .content code{color:#d7e2ff}
+
+    /* Cookie bar */
+    .cookiebar{
+      position:fixed; left:14px; right:14px; bottom:14px;
+      z-index:130;
+      display:none;
+    }
+    .cookiebar.show{display:block}
+    .cookiebar .inner{
+      max-width: var(--max);
+      margin:0 auto;
+      border:1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(11,18,32,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding:12px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .cookiebar p{margin:0; color:var(--muted); font-size:13px; max-width: 80ch;}
+    .cookiebar .actions{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* Toast */
+    #toast{
+      position:fixed;
+      bottom:18px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(11,18,32,.92);
+      backdrop-filter:blur(10px);
+      box-shadow:0 16px 40px rgba(0,0,0,.45);
+      font-size:13px;
+      color:var(--txt);
+      z-index:200;
+      opacity:0;
+      transition:opacity .2s ease;
+      pointer-events:none;
+    }
+
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns: 1fr; }
+      .cols{grid-template-columns: 1fr}
+      .card{grid-column: span 6}
+      .brand{min-width:auto}
+    }
+    @media (max-width: 560px){
+      .card{grid-column: span 12}
+      .nav{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="row">
+        <a class="brand" href="#inicio" aria-label="Ir para o início">
+          <div class="logo" aria-hidden="true">
+            <!-- Logo simples (SVG). Se quiser trocar por imagem: substitua por <img src="logo.png" ...> -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6 8.2c0-1 0.8-1.8 1.8-1.8h8.4c1 0 1.8.8 1.8 1.8v3.6c0 1-.8 1.8-1.8 1.8H7.8c-1 0-1.8-.8-1.8-1.8V8.2Z" stroke="white" stroke-width="1.7" opacity=".95"/>
+              <path d="M7 16h10" stroke="white" stroke-width="1.7" opacity=".95"/>
+              <path d="M10 12v4" stroke="white" stroke-width="1.7" opacity=".95"/>
+              <path d="M14 12v4" stroke="white" stroke-width="1.7" opacity=".95"/>
+            </svg>
+          </div>
+          <div class="name">
+            <strong>lojaeletroteo</strong>
+            <span>Dispositivos & Periféricos de Informática</span>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Navegação">
+          <a href="#produtos">Produtos</a>
+          <a href="#ofertas">Ofertas</a>
+          <a href="#faq">Dúvidas</a>
+          <a href="#contato">Contato</a>
+          <a href="#" id="linkPrivacy">Privacidade</a>
+          <a href="#" id="linkCookies">Cookies</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn" id="btnTheme" title="Alternar contraste">🌓 Tema</button>
+          <button class="btn primary" id="btnCart" title="Abrir carrinho">
+            🛒 Carrinho <span class="pill" id="cartCount">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-card">
+            <span class="pill">🚀 Entrega/Retirada • 🔒 Compra segura • ✅ Garantia</span>
+            <h1>lojaeletroteo — seu setup começa aqui.</h1>
+            <p>
+              Vitrine de periféricos e upgrades para informática. Adicione ao carrinho e finalize no botão
+              <b>“Pagar com InfinitePay”</b> (Pix ou cartão).
+            </p>
+
+            <div class="searchbar" aria-label="Busca e filtros">
+              <div class="input" style="min-width:260px">
+                <span aria-hidden="true">🔎</span>
+                <input id="q" type="search" placeholder="Pesquisar: mouse, teclado, SSD..." autocomplete="off" />
+              </div>
+              <div class="input" style="max-width:220px">
+                <span aria-hidden="true">🏷️</span>
+                <select id="category">
+                  <option value="all">Todas categorias</option>
+                  <option value="Periféricos">Periféricos</option>
+                  <option value="Armazenamento">Armazenamento</option>
+                  <option value="Memórias">Memórias</option>
+                  <option value="Áudio">Áudio</option>
+                  <option value="Acessórios">Acessórios</option>
+                </select>
+              </div>
+              <button class="btn" id="btnClear">🧹 Limpar</button>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#produtos">🛍️ Ver vitrine</a>
+              <button class="btn" id="btnOpenPrivacy">🛡️ Termos & privacidade</button>
+              <button class="btn" id="btnOpenCookies">🍪 Preferências de cookies</button>
+            </div>
+
+            <div style="margin-top:12px" class="mini">
+              <h3 style="margin:0 0 8px">Integração InfinitePay</h3>
+              <p class="muted" style="margin:0">
+                O botão de pagar já está pronto. Depois você só preenche as tags/infos da InfinitePay na seção
+                <b>CONFIG</b> do JavaScript.
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-aside" id="contato">
+            <div class="mini">
+              <h3>Vantagens</h3>
+              <ul>
+                <li><span class="dot ok"></span> Site leve, 1 arquivo só</li>
+                <li><span class="dot brand"></span> Carrinho salva no navegador</li>
+                <li><span class="dot warn"></span> Cookies com consentimento</li>
+              </ul>
+            </div>
+
+            <div class="mini">
+              <h3>Atendimento</h3>
+              <p>WhatsApp é canal principal (opcional).</p>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+                <button class="btn primary" id="btnWhats">💬 WhatsApp</button>
+                <button class="btn" id="btnShare">🔗 Compartilhar</button>
+              </div>
+            </div>
+
+            <div class="mini">
+              <h3>Configurar sua marca</h3>
+              <p class="muted">
+                Troque o logo e ajuste textos/contato no topo do JS (procure por <b>CONFIG</b>).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="produtos">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Vitrine</h2>
+            <p>Produtos de informática (exemplos para você editar).</p>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <span class="pill" id="resultCount">0 itens</span>
+            <div class="input" style="max-width:230px">
+              <span aria-hidden="true">↕️</span>
+              <select id="sort">
+                <option value="featured">Ordenar: Destaque</option>
+                <option value="priceAsc">Preço: menor → maior</option>
+                <option value="priceDesc">Preço: maior → menor</option>
+                <option value="nameAsc">Nome: A → Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="ofertas">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Ofertas / Combos</h2>
+            <p>Combos aumentam o ticket médio.</p>
+          </div>
+        </div>
+        <div class="grid" id="offers"></div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Dúvidas frequentes</h2>
+            <p>Privacidade, cookies, entrega e pagamento.</p>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div style="display:grid; gap:10px">
+            <details>
+              <summary>Como funciona o pagamento?</summary>
+              <p>Você vai usar o Checkout InfinitePay (Pix ou cartão). O site monta o pedido e abre o link do checkout.</p>
+            </details>
+            <details>
+              <summary>Cookies: o que vocês guardam?</summary>
+              <p>Este modelo usa cookies/armazenamento apenas para: carrinho e preferências de cookies. Analytics/marketing ficam desativados por padrão.</p>
+            </details>
+            <details>
+              <summary>Como atualizar produtos e preços?</summary>
+              <p>Edite a lista <code>products</code> e <code>offers</code> no JavaScript (no final do arquivo).</p>
+            </details>
+          </div>
+
+          <div class="mini">
+            <h3>Termos e Políticas</h3>
+            <p class="muted">Clique para abrir os textos (você pode editar/colocar CNPJ, e-mail, endereço, etc.).</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+              <button class="btn primary" id="btnOpenPrivacy2">🛡️ Privacidade</button>
+              <button class="btn" id="btnOpenCookies2">🍪 Cookies</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap">
+        <div style="display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; align-items:center">
+          <div>
+            <b>lojaeletroteo</b> <span class="muted">©</span> <span id="year"></span><br/>
+            <span class="muted">Dispositivos e periféricos de informática</span>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn" href="#inicio">Voltar ao topo</a>
+            <button class="btn danger" id="btnResetCart">Limpar carrinho</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Drawer Carrinho -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Carrinho">
+      <div class="head">
+        <h3>🛒 Carrinho</h3>
+        <button class="btn" id="btnCloseCart">Fechar</button>
+      </div>
+
+      <div class="cart-list" id="cartList"></div>
+
+      <div class="totals">
+        <div class="row2"><span class="muted">Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
+        <div class="row2"><span class="muted">Frete</span><span class="muted">a combinar</span></div>
+        <div class="row2"><span class="muted">Total</span><strong id="total">R$ 0,00</strong></div>
+
+        <button class="btn primary" id="btnPayInfinite">💳 Pagar com InfinitePay (Pix/Cartão)</button>
+        <small class="muted">
+          Depois você completa as tags/config da InfinitePay no JS.
+          *Nunca coloque token/secret no HTML público.*
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Privacidade -->
+  <div class="modal" id="privacyModal" aria-hidden="true">
+    <div class="box" role="dialog" aria-modal="true" aria-label="Privacidade">
+      <div class="top">
+        <div>
+          <strong>🛡️ Política de Privacidade — lojaeletroteo</strong><br/>
+          <small class="muted">Modelo base (edite conforme sua operação).</small>
+        </div>
+        <button class="btn" id="btnClosePrivacy">Fechar</button>
+      </div>
+      <div class="content">
+        <p>
+          Esta Política descreve como a <b>lojaeletroteo</b> trata dados pessoais ao utilizar este site e efetuar compras.
+          Ajuste este texto com seus dados (CNPJ/CPF, e-mail, telefone, endereço).
+        </p>
+
+        <h4>1) Quais dados podemos coletar</h4>
+        <ul>
+          <li><b>Dados de compra:</b> itens do carrinho, valor e registros necessários para atendimento.</li>
+          <li><b>Contato:</b> quando você nos chama (ex.: WhatsApp/e-mail), recebemos as informações que você informar.</li>
+          <li><b>Dados técnicos:</b> informações básicas do navegador/dispositivo para funcionamento e segurança.</li>
+        </ul>
+
+        <h4>2) Finalidades</h4>
+        <ul>
+          <li>Processar pedidos e pagamentos (via provedor de pagamento, ex.: InfinitePay).</li>
+          <li>Atendimento ao cliente, suporte e pós-venda.</li>
+          <li>Segurança e prevenção de fraude/abuso.</li>
+        </ul>
+
+        <h4>3) Compartilhamento</h4>
+        <p>
+          Podemos compartilhar dados estritamente necessários com serviços de pagamento e infraestrutura (ex.: hospedagem),
+          apenas para cumprir a finalidade da compra.
+        </p>
+
+        <h4>4) Seus direitos (LGPD)</h4>
+        <p>
+          Você pode solicitar confirmação de tratamento, acesso, correção, eliminação, portabilidade e revogação de consentimento
+          quando aplicável. Contato: <code>SEU_EMAIL@DOMINIO.COM</code>
+        </p>
+
+        <h4>5) Retenção</h4>
+        <p>
+          Mantemos dados pelo tempo necessário para cumprir obrigações legais/contratuais e atender solicitações do cliente.
+        </p>
+
+        <h4>6) Segurança</h4>
+        <p>
+          Adotamos medidas razoáveis para proteger informações. Ainda assim, nenhum sistema é 100% imune.
+        </p>
+
+        <h4>7) Alterações</h4>
+        <p>
+          Podemos atualizar esta Política. A versão vigente estará sempre disponível neste site.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Cookies -->
+  <div class="modal" id="cookiesModal" aria-hidden="true">
+    <div class="box" role="dialog" aria-modal="true" aria-label="Cookies">
+      <div class="top">
+        <div>
+          <strong>🍪 Política e Preferências de Cookies</strong><br/>
+          <small class="muted">Escolha o que autoriza. Você pode mudar depois.</small>
+        </div>
+        <button class="btn" id="btnCloseCookies">Fechar</button>
+      </div>
+
+      <div class="content">
+        <p>
+          Usamos cookies/armazenamento local para manter o site funcionando e lembrar suas preferências.
+          Cookies opcionais (analytics/marketing) só serão ativados se você autorizar.
+        </p>
+
+        <h4>Preferências</h4>
+        <div class="mini" style="border-radius:18px">
+          <label style="display:flex; justify-content:space-between; gap:10px; align-items:center">
+            <span>
+              <b>Essenciais</b><br/><small class="muted">Necessários para o carrinho e preferências. Sempre ativos.</small>
+            </span>
+            <input type="checkbox" checked disabled />
+          </label>
+        </div>
+
+        <div class="mini" style="border-radius:18px; margin-top:10px">
+          <label style="display:flex; justify-content:space-between; gap:10px; align-items:center">
+            <span>
+              <b>Analytics</b><br/><small class="muted">Mede uso do site (ex.: visitas). Só com consentimento.</small>
+            </span>
+            <input type="checkbox" id="ckAnalytics" />
+          </label>
+        </div>
+
+        <div class="mini" style="border-radius:18px; margin-top:10px">
+          <label style="display:flex; justify-content:space-between; gap:10px; align-items:center">
+            <span>
+              <b>Marketing</b><br/><small class="muted">Personalização/anúncios. Só com consentimento.</small>
+            </span>
+            <input type="checkbox" id="ckMarketing" />
+          </label>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+          <button class="btn primary" id="btnSaveCookies">Salvar preferências</button>
+          <button class="btn" id="btnAcceptAll">Aceitar tudo</button>
+          <button class="btn danger" id="btnRejectAll">Recusar opcionais</button>
+        </div>
+
+        <p class="muted" style="margin-top:12px">
+          Dica: se você integrar Google Analytics/Pixel, só carregue os scripts quando <b>Analytics/Marketing</b> estiverem aceitos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Bar -->
+  <div class="cookiebar" id="cookiebar" aria-live="polite">
+    <div class="inner">
+      <div>
+        <b>🍪 Cookies</b>
+        <p>
+          Usamos cookies essenciais para o funcionamento do carrinho e para lembrar suas preferências.
+          Você pode aceitar cookies opcionais (analytics/marketing) ou ajustar suas preferências.
+        </p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="cookiePrefs">Preferências</button>
+        <button class="btn danger" id="cookieReject">Recusar opcionais</button>
+        <button class="btn primary" id="cookieAccept">Aceitar tudo</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    // =========================
+    // CONFIG (edite aqui)
+    // =========================
+    const STORE_NAME = "lojaeletroteo";
+    const WHATS_NUMBER = "5582999999999"; // opcional
+    // InfinitePay: você completa depois
+    const INFINITE_HANDLE = "SUA_INFINITETAG_AQUI"; // ex: "minhaloja" (sem $)
+    const INFINITE_REDIRECT_URL = ""; // ex: "https://seusite.com/obrigado"
+    const INFINITE_WEBHOOK_URL = "";  // ex: "https://seusite.com/api/webhook" (se usar backend)
+
+    // =========================
+    // Produtos (exemplos editáveis)
+    // =========================
+    const products = [
+      {id:"logi_m90", name:"Mouse Logitech M90 USB", category:"Periféricos", price:49.90, old:59.90, badge:"hot", tags:["Logitech","USB","Conforto"], featured:10},
+      {id:"logi_k120", name:"Teclado Logitech K120 USB ABNT2", category:"Periféricos", price:89.90, old:99.90, badge:"new", tags:["ABNT2","USB","Durável"], featured:9},
+      {id:"kingston_ssd_480", name:"SSD Kingston A400 480GB SATA", category:"Armazenamento", price:209.90, old:239.90, badge:"hot", tags:["Kingston","SATA","Upgrade"], featured:10},
+      {id:"sandisk_ssd_1tb", name:"SSD SanDisk Plus 1TB SATA", category:"Armazenamento", price:399.90, old:459.90, badge:"", tags:["SanDisk","1TB","SATA"], featured:8},
+      {id:"ram_8gb_ddr4", name:"Memória RAM 8GB DDR4 (2666/3200)", category:"Memórias", price:129.90, old:149.90, badge:"", tags:["DDR4","8GB","Upgrade"], featured:7},
+      {id:"ram_16gb_ddr4", name:"Memória RAM 16GB DDR4 (2666/3200)", category:"Memórias", price:229.90, old:259.90, badge:"off", tags:["DDR4","16GB","Performance"], featured:8},
+      {id:"headset_hs", name:"Headset com Microfone (P2/USB)", category:"Áudio", price:109.90, old:129.90, badge:"", tags:["Microfone","Conforto","Stereo"], featured:6},
+      {id:"hub_usb3", name:"Hub USB 3.0 4 portas", category:"Acessórios", price:59.90, old:79.90, badge:"off", tags:["USB 3.0","4 portas","Compacto"], featured:6},
+      {id:"hdmi_2m", name:"Cabo HDMI 2.0 (2m) 4K", category:"Acessórios", price:29.90, old:39.90, badge:"", tags:["4K","2m","Resistente"], featured:5},
+    ];
+
+    const offers = [
+      {id:"combo_basico", name:"Combo Básico: Teclado + Mouse", category:"Periféricos", price:129.90, old:159.90, badge:"off", tags:["Combo","Economize"], featured:11},
+      {id:"combo_upgrade", name:"Kit Upgrade: SSD 480GB + RAM 8GB", category:"Armazenamento", price:319.90, old:389.90, badge:"hot", tags:["Upgrade","Rápido"], featured:12},
+      {id:"combo_home", name:"Home Office: Hub USB + Cabo HDMI", category:"Acessórios", price:79.90, old:99.90, badge:"off", tags:["Home Office","Prático"], featured:9},
+    ];
+
+    // =========================
+    // Utils
+    // =========================
+    const fmt = (v) => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+    const qs = (s, el=document) => el.querySelector(s);
+    const qsa = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, s => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[s]));
+    }
+    function toast(msg){
+      const el = qs("#toast");
+      el.textContent = msg;
+      el.style.opacity = "1";
+      clearTimeout(window.__t);
+      window.__t = setTimeout(()=> el.style.opacity="0", 2200);
+    }
+
+    // =========================
+    // Cookies (consentimento)
+    // =========================
+    const CONSENT_KEY = "lojaeletroteo_cookie_consent_v1";
+    const defaultConsent = { essentials:true, analytics:false, marketing:false, decided:false };
+
+    function getConsent(){
+      try { return JSON.parse(localStorage.getItem(CONSENT_KEY)) || defaultConsent; }
+      catch { return defaultConsent; }
+    }
+    function setConsent(c){
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(c));
+      applyConsent(c);
+    }
+    function applyConsent(c){
+      // Aqui você liga/desliga scripts de analytics/marketing quando for integrar.
+      // Exemplo (futuro):
+      // if(c.analytics) loadGoogleAnalytics();
+      // if(c.marketing) loadMetaPixel();
+    }
+    function showCookieBarIfNeeded(){
+      const c = getConsent();
+      applyConsent(c);
+      if(!c.decided) qs("#cookiebar").classList.add("show");
+    }
+
+    // =========================
+    // Carrinho
+    // =========================
+    const CART_KEY = "lojaeletroteo_cart_v1";
+    let cart = loadCart();
+
+    function loadCart(){
+      try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; }
+      catch { return {}; }
+    }
+    function saveCart(){
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      renderCartCount();
+    }
+    function addToCart(id, qty=1){
+      cart[id] = (cart[id]||0) + qty;
+      if(cart[id] <= 0) delete cart[id];
+      saveCart();
+      toast("✅ Adicionado ao carrinho");
+    }
+    function setQty(id, qty){
+      if(qty <= 0) delete cart[id];
+      else cart[id]=qty;
+      saveCart();
+      renderCart();
+    }
+    function clearCart(){
+      cart = {};
+      saveCart();
+      renderCart();
+      toast("🧹 Carrinho limpo");
+    }
+    function getProductById(id){
+      return products.find(p=>p.id===id) || offers.find(p=>p.id===id);
+    }
+
+    // =========================
+    // Render: Produtos
+    // =========================
+    function productCard(p){
+      const badgeClass = p.badge ? `badge ${p.badge}` : "badge";
+      const badgeText = p.badge==="hot" ? "🔥 Destaque" : p.badge==="new" ? "🆕 Novo" : p.badge==="off" ? "🏷️ Oferta" : "⭐ Recomendado";
+      const tags = (p.tags||[]).slice(0,3).map(t=>`<span class="chip">${escapeHtml(t)}</span>`).join("");
+      const initials = p.name.split(" ").slice(0,2).join(" ");
+      return `
+        <article class="card">
+          <div class="thumb">
+            <span class="${badgeClass}">${badgeText}</span>
+            <div>
+              <div style="font-size:34px">🧩</div>
+              <div class="muted" style="font-size:12px; margin-top:6px">${escapeHtml(initials)}</div>
+            </div>
+          </div>
+          <div class="content">
+            <div class="title">
+              <div>
+                <h3>${escapeHtml(p.name)}</h3>
+                <small>${escapeHtml(p.category)}</small>
+              </div>
+              <small class="muted">ID: ${escapeHtml(p.id)}</small>
+            </div>
+            <div class="chips">${tags}</div>
+            <div class="price">
+              <div>
+                <strong>${fmt(p.price)}</strong>
+                ${p.old ? `<div><s>${fmt(p.old)}</s></div>` : ``}
+              </div>
+              <button class="btn primary" data-add="${p.id}">➕ Adicionar</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function sortList(list, sort){
+      const copy = list.slice();
+      if(sort === "priceAsc") copy.sort((a,b)=>a.price-b.price);
+      else if(sort === "priceDesc") copy.sort((a,b)=>b.price-a.price);
+      else if(sort === "nameAsc") copy.sort((a,b)=>a.name.localeCompare(b.name));
+      else copy.sort((a,b)=> (b.featured||0)-(a.featured||0));
+      return copy;
+    }
+
+    function bindAddButtons(container){
+      qsa("[data-add]", container).forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          addToCart(btn.getAttribute("data-add"), 1);
+          renderCartCount();
+        });
+      });
+    }
+
+    function renderProducts(){
+      const grid = qs("#grid");
+      const q = (qs("#q").value || "").trim().toLowerCase();
+      const cat = qs("#category").value;
+      const sort = qs("#sort").value;
+
+      let list = products.slice();
+      if(cat !== "all") list = list.filter(p => p.category === cat);
+      if(q) list = list.filter(p => (p.name + " " + (p.tags||[]).join(" ")).toLowerCase().includes(q));
+
+      list = sortList(list, sort);
+      qs("#resultCount").textContent = `${list.length} itens`;
+
+      grid.innerHTML = list.map(productCard).join("");
+      bindAddButtons(grid);
+    }
+
+    function renderOffers(){
+      const el = qs("#offers");
+      el.innerHTML = offers.map(productCard).join("");
+      bindAddButtons(el);
+    }
+
+    // =========================
+    // Render: Carrinho
+    // =========================
+    function renderCartCount(){
+      const count = Object.values(cart).reduce((a,b)=>a+b,0);
+      qs("#cartCount").textContent = count;
+    }
+
+    function renderCart(){
+      const list = qs("#cartList");
+      const items = Object.entries(cart).map(([id,qty])=>{
+        const p = getProductById(id);
+        return p ? {p, qty} : null;
+      }).filter(Boolean);
+
+      if(items.length === 0){
+        list.innerHTML = `
+          <div class="mini" style="border-radius:18px">
+            <h3 style="margin:0 0 6px">Carrinho vazio</h3>
+            <p style="margin:0" class="muted">Adicione itens na vitrine e finalize no checkout.</p>
+          </div>
+        `;
+        qs("#subtotal").textContent = fmt(0);
+        qs("#total").textContent = fmt(0);
+        return;
+      }
+
+      let subtotal = 0;
+      list.innerHTML = items.map(({p,qty})=>{
+        subtotal += p.price * qty;
+        return `
+          <div class="cart-item">
+            <div class="meta">
+              <strong>${escapeHtml(p.name)}</strong>
+              <small>${escapeHtml(p.category)} • ${fmt(p.price)} cada</small>
+            </div>
+            <div style="display:grid; gap:8px; justify-items:end">
+              <div class="qty" aria-label="Quantidade">
+                <button title="Diminuir" data-dec="${p.id}">−</button>
+                <span style="min-width:20px; text-align:center">${qty}</span>
+                <button title="Aumentar" data-inc="${p.id}">+</button>
+              </div>
+              <button class="btn danger" style="padding:8px 10px" data-rm="${p.id}">Remover</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      qs("#subtotal").textContent = fmt(subtotal);
+      qs("#total").textContent = fmt(subtotal);
+
+      qsa("[data-inc]").forEach(b=>b.onclick=()=>setQty(b.dataset.inc, (cart[b.dataset.inc]||0)+1));
+      qsa("[data-dec]").forEach(b=>b.onclick=()=>setQty(b.dataset.dec, (cart[b.dataset.dec]||0)-1));
+      qsa("[data-rm]").forEach(b=>b.onclick=()=>setQty(b.dataset.rm, 0));
+    }
+
+    // =========================
+    // InfinitePay (stub pronto)
+    // =========================
+    function buildCheckoutPayload(){
+      // Estrutura genérica (você ajusta depois com a doc/fields reais)
+      const items = [];
+      let total = 0;
+
+      for(const [id, qty] of Object.entries(cart)){
+        const p = getProductById(id);
+        if(!p) continue;
+        const unitCents = Math.round(p.price * 100);
+        items.push({
+          name: p.name,
+          quantity: qty,
+          unit_amount: unitCents, // cents
+          sku: id
+        });
+        total += unitCents * qty;
+      }
+
+      return {
+        handle: INFINITE_HANDLE,         // você completa
+        currency: "BRL",
+        amount: total,                  // cents
+        items,
+        redirect_url: INFINITE_REDIRECT_URL || undefined,
+        webhook_url: INFINITE_WEBHOOK_URL || undefined,
+        description: `Pedido ${STORE_NAME} - ${new Date().toISOString().slice(0,10)}`
+      };
+    }
+
+    async function payWithInfinitePay(){
+      if(Object.keys(cart).length === 0) return toast("Carrinho vazio 😅");
+
+      // IMPORTANTE:
+      // - Se a integração exigir token/secret, NÃO faça direto do front.
+      // - Use uma função serverless na Vercel (/api/checkout) para ocultar credenciais.
+      // Aqui fica apenas o "ponto de encaixe".
+
+      const payload = buildCheckoutPayload();
+      console.log("Checkout payload (ajuste depois):", payload);
+
+      // MODO 1 (RECOMENDADO): chamar seu backend (Vercel Function)
+      // Ex: const res = await fetch("/api/infinitepay/checkout", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+      // const data = await res.json();
+      // window.location.href = data.url;
+
+      // MODO 2 (se for um checkout público por link/sem secret): você troca aqui e redireciona
+      // Ex: window.location.href = `https://checkout.infinitepay.io/${INFINITE_HANDLE}`;
+
+      toast("⚙️ Integração InfinitePay pendente: preencha o handle/tags no JS.");
+      // De propósito: não redireciono sem você configurar.
+    }
+
+    // =========================
+    // Drawer + Modais
+    // =========================
+    const drawer = qs("#drawer");
+    function openCart(){ drawer.classList.add("open"); drawer.setAttribute("aria-hidden","false"); renderCart(); }
+    function closeCart(){ drawer.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); }
+    drawer.addEventListener("click",(e)=>{ if(e.target===drawer) closeCart(); });
+    document.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ closeCart(); closeModal("#privacyModal"); closeModal("#cookiesModal"); }});
+
+    function openModal(sel){
+      const m = qs(sel);
+      m.classList.add("open");
+      m.setAttribute("aria-hidden","false");
+    }
+    function closeModal(sel){
+      const m = qs(sel);
+      m.classList.remove("open");
+      m.setAttribute("aria-hidden","true");
+    }
+    qsa(".modal").forEach(m=>{
+      m.addEventListener("click",(e)=>{ if(e.target===m) m.classList.remove("open"); });
+    });
+
+    // =========================
+    // Tema
+    // =========================
+    let highContrast = false;
+    function toggleTheme(){
+      highContrast = !highContrast;
+      if(highContrast){
+        document.documentElement.style.setProperty("--bg", "#03040a");
+        document.documentElement.style.setProperty("--brand", "#7bdcff");
+        toast("🌓 Tema alternado");
+      }else{
+        document.documentElement.style.setProperty("--bg", "#070b14");
+        document.documentElement.style.setProperty("--brand", "#5b8cff");
+        toast("🌓 Tema padrão");
+      }
+    }
+
+    // =========================
+    // Whats / Share (opcional)
+    // =========================
+    function openWhatsApp(text){
+      const msg = encodeURIComponent(text);
+      const url = `https://wa.me/${WHATS_NUMBER}?text=${msg}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    // =========================
+    // Init + binds
+    // =========================
+    qs("#year").textContent = new Date().getFullYear();
+
+    qs("#btnCart").onclick = openCart;
+    qs("#btnCloseCart").onclick = closeCart;
+    qs("#btnResetCart").onclick = clearCart;
+    qs("#btnTheme").onclick = toggleTheme;
+
+    qs("#btnPayInfinite").onclick = payWithInfinitePay;
+
+    qs("#q").addEventListener("input", renderProducts);
+    qs("#category").addEventListener("change", renderProducts);
+    qs("#sort").addEventListener("change", renderProducts);
+
+    qs("#btnClear").onclick = ()=>{
+      qs("#q").value="";
+      qs("#category").value="all";
+      qs("#sort").value="featured";
+      renderProducts();
+      toast("Filtros limpos");
+    };
+
+    // Links e botões de privacidade/cookies
+    const openPrivacy = (e)=>{ e?.preventDefault?.(); openModal("#privacyModal"); };
+    const openCookies = (e)=>{ e?.preventDefault?.(); syncCookieUI(); openModal("#cookiesModal"); };
+
+    qs("#btnOpenPrivacy").onclick = openPrivacy;
+    qs("#btnOpenPrivacy2").onclick = openPrivacy;
+    qs("#linkPrivacy").onclick = openPrivacy;
+    qs("#btnClosePrivacy").onclick = ()=>closeModal("#privacyModal");
+
+    qs("#btnOpenCookies").onclick = openCookies;
+    qs("#btnOpenCookies2").onclick = openCookies;
+    qs("#linkCookies").onclick = openCookies;
+    qs("#btnCloseCookies").onclick = ()=>closeModal("#cookiesModal");
+
+    // Cookie bar
+    qs("#cookiePrefs").onclick = openCookies;
+    qs("#cookieAccept").onclick = ()=>{
+      setConsent({ essentials:true, analytics:true, marketing:true, decided:true });
+      qs("#cookiebar").classList.remove("show");
+      toast("✅ Cookies aceitos");
+    };
+    qs("#cookieReject").onclick = ()=>{
+      setConsent({ essentials:true, analytics:false, marketing:false, decided:true });
+      qs("#cookiebar").classList.remove("show");
+      toast("✅ Preferências salvas");
+    };
+
+    // Cookies modal UI
+    function syncCookieUI(){
+      const c = getConsent();
+      qs("#ckAnalytics").checked = !!c.analytics;
+      qs("#ckMarketing").checked = !!c.marketing;
+    }
+    qs("#btnSaveCookies").onclick = ()=>{
+      const c = getConsent();
+      setConsent({ ...c, essentials:true, analytics:qs("#ckAnalytics").checked, marketing:qs("#ckMarketing").checked, decided:true });
+      closeModal("#cookiesModal");
+      qs("#cookiebar").classList.remove("show");
+      toast("✅ Preferências salvas");
+    };
+    qs("#btnAcceptAll").onclick = ()=>{
+      qs("#ckAnalytics").checked = true;
+      qs("#ckMarketing").checked = true;
+      qs("#btnSaveCookies").click();
+    };
+    qs("#btnRejectAll").onclick = ()=>{
+      qs("#ckAnalytics").checked = false;
+      qs("#ckMarketing").checked = false;
+      qs("#btnSaveCookies").click();
+    };
+
+    // Whats + Share
+    qs("#btnWhats").onclick = ()=>{
+      openWhatsApp(`Olá! Vim pelo site da *${STORE_NAME}* e quero tirar uma dúvida 👋`);
+    };
+    qs("#btnShare").onclick = async ()=>{
+      try{
+        if(navigator.share){
+          await navigator.share({title: STORE_NAME, text: "Confira a loja:", url: location.href});
+        }else{
+          await navigator.clipboard.writeText(location.href);
+          toast("🔗 Link copiado");
+        }
+      }catch{ toast("Não foi possível compartilhar agora."); }
+    };
+
+    // Render
+    renderOffers();
+    renderProducts();
+    renderCartCount();
+    showCookieBarIfNeeded();
+  </script>
+</body>
+</html>
